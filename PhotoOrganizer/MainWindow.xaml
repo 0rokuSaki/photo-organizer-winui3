@@ -25,7 +25,7 @@
             </Style>
         </Grid.Resources>
         <!--#endregion-->
-        
+
         <!--#region Title Bar -->
         <StackPanel x:Name="TitleBar"
                     Grid.Row="0"
@@ -51,6 +51,7 @@
                     Grid.Column="0"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    Background="{ThemeResource SystemAccentColorDark1}"
                     Click="StartButton_Click"
                     Content="Start" />
             <Grid Grid.Column="1"
@@ -71,6 +72,105 @@
                 </controls:HeaderedContentControl>
             </Grid>
         </Grid>
+        <!--#endregion-->
+
+        <!--#region Start Settings Dialog -->
+        <ContentDialog x:Name="StartSettingsDialog"
+                       PrimaryButtonText="Start"
+                       CloseButtonText="Cancel">
+            <!-- Title Template -->
+            <ContentDialog.TitleTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="40"
+                               Height="40"
+                               Source="Assets/app-icon.gif" />
+                        <TextBlock VerticalAlignment="Center"
+                                   Text="Start Settings" />
+                    </StackPanel>
+                </DataTemplate>
+            </ContentDialog.TitleTemplate>
+            <!-- Primary Button Style -->
+            <ContentDialog.PrimaryButtonStyle>
+                <Style TargetType="Button">
+                    <Setter Property="Background"
+                            Value="{ThemeResource SystemAccentColorDark1}" />
+                    <Setter Property="CornerRadius"
+                            Value="4" />
+                </Style>
+            </ContentDialog.PrimaryButtonStyle>
+
+            <StackPanel Orientation="Vertical"
+                        Spacing="20">
+                <!-- Selected Input Folder-->
+                <controls:HeaderedContentControl Header="Input Folder">
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="5">
+                        <TextBox x:Name="SelectedInputFolderTextBox"
+                                 Grid.Column="0"
+                                 IsReadOnly="True" />
+                        <Button Grid.Column="1"
+                                Click="SelectedInputFolderButton_Click"
+                                Content="..." />
+                    </Grid>
+                </controls:HeaderedContentControl>
+                <!-- Selected Output Folder -->
+                <controls:HeaderedContentControl Header="Output Folder">
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="5">
+                        <TextBox x:Name="SelectedOutputFolderTextBox"
+                                 Grid.Column="0"
+                                 IsReadOnly="True" />
+                        <Button Grid.Column="1"
+                                Click="SelectedOutputFolderButton_Click"
+                                Content="..." />
+                    </Grid>
+                </controls:HeaderedContentControl>
+                <!-- Output Folder Structure -->
+                <controls:HeaderedContentControl Header="Output Folder Structure">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox x:Name="CreateYearFolderCheckBox"
+                                  Click="FolderStructureCheckBox_Click"
+                                  Content="Year"
+                                  IsChecked="True" />
+                        <CheckBox x:Name="CreateMonthFolderCheckBox"
+                                  Click="FolderStructureCheckBox_Click"
+                                  Content="Month"
+                                  IsChecked="True" />
+                        <CheckBox x:Name="CreateDayFolderCheckBox"
+                                  Click="FolderStructureCheckBox_Click"
+                                  Content="Day"
+                                  IsChecked="True" />
+                        <CheckBox x:Name="CreateDateFolderCheckBox"
+                                  Click="FolderStructureCheckBox_Click"
+                                  Content="Date"
+                                  IsChecked="True" />
+                    </StackPanel>
+                </controls:HeaderedContentControl>
+                <!-- Output Example -->
+                <controls:HeaderedContentControl Header="Output Example">
+                    <TextBlock x:Name="ExampleTextBlock"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap" />
+                </controls:HeaderedContentControl>
+                <!-- Name Conflict Settigns -->
+                <controls:HeaderedContentControl Header="File Name Conflict">
+                    <RadioButtons MaxColumns="3">
+                        <RadioButton Content="Add Suffix"
+                                     IsChecked="True"
+                                     Tag="AddSufix" />
+                        <RadioButton Content="Skip"
+                                     Tag="Skip" />
+                    </RadioButtons>
+                </controls:HeaderedContentControl>
+                <!-- Simulation Settings -->
+                <controls:HeaderedContentControl Header="Simulation (No file copies)">
+                    <ToggleSwitch x:Name="IsSimulationToggleSwitch"
+                                  OffContent="Disabled"
+                                  OnContent="Enabled" />
+                </controls:HeaderedContentControl>
+            </StackPanel>
+        </ContentDialog>
         <!--#endregion-->
     </Grid>
 </Window>
