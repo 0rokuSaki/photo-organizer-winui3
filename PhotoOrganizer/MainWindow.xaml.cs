@@ -13,7 +13,8 @@ public sealed partial class MainWindow : Window
     {
         this.InitializeComponent();
 
-        Ioc.Default.ConfigureServices(new ServiceCollection()
-            .BuildServiceProvider());
+        Title = "Photo Organizer";
+        ExtendsContentIntoTitleBar = true;
+        SetTitleBar(TitleBar);
     }
 }
