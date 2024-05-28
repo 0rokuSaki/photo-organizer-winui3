@@ -1,3 +1,5 @@
+using CommunityToolkit.Mvvm.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 
 namespace PhotoOrganizer;
@@ -10,5 +12,8 @@ public sealed partial class MainWindow : Window
     public MainWindow()
     {
         this.InitializeComponent();
+
+        Ioc.Default.ConfigureServices(new ServiceCollection()
+            .BuildServiceProvider());
     }
 }
